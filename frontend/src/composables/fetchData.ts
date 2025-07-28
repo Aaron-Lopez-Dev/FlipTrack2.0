@@ -2,24 +2,40 @@ import { ref } from "vue";
 
 let listingDataPull = ref([]);
 let average = ref("");
-let isLoading = ref(false)
+let isLoading = ref(false);
 
-function fetchData(){
-    //console.log("Fetching Data...")
-    isLoading.value = true
+async function fetchData({
+  zipInput,
+  searchInput,
+  radiusInput,
+}: {
+  zipInput: string;
+  searchInput: string;
+  radiusInput: string;
+}) {
+  console.log("Fetching Data...");
+  isLoading.value = true;
 
-   // console.log(isLoading.value)
-    fetch("http://localhost:4020/get-data")    
-    .then(response => response.json())
-    .then(data => {
-        //console.log("Completed")
+  try {
+    const response = await fetch("http://localhost:4020/new-search", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ searchInput, radiusInput, zipInput }),
+    });
 
-        average.value = average.value = `$${Math.floor(data.average).toLocaleString()}`;
-        listingDataPull.value = data.listingData
-        //console.log(listingDataPull.value)
-        isLoading.value = false
-    })
-    
+    const data = await response.json();
+
+    average.value = `$${Math.floor(data.average).toLocaleString()}`;
+    listingDataPull.value = data.listingData;
+
+
+  } catch (error) {
+    console.error("Fetch failed:", error);
+  } finally {
+    isLoading.value = false;
+  }
 }
 
-export { fetchData, listingDataPull, average, isLoading}
+export { fetchData, listingDataPull, average, isLoading };

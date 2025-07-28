@@ -11,10 +11,13 @@
 
 <script setup>
 import { listingDataPull } from '@/composables/fetchData';
+
+
 </script>
 
 <style>
 .listingContainer {
+  margin-top: 4250px;
   width: 900px;
   height: fit-content;
   display: grid;

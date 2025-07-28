@@ -16,18 +16,10 @@
   </svg>
   <input type="search" required placeholder="Item to Search" v-model="searchInput"/>
 </label>
-    <!-- <input type="text" class="input" placeholder="Enter Item to Search" v-model="searchInput"> -->
     <input type="text" class="input" placeholder="Enter Zip Code" v-model="zipInput">
     <input type="text" class="input" placeholder="Search Radius (Miles)" v-model="radiusInput">
 
-    <button class="btn btn-outline" @click="handleSetParams">Set Parameters</button>
-
-    <div class="parameters">
-      <span class="leftAlign">Searching For: <span id="searchInputDisplay">{{ searchInput }}</span></span><br>
-      <span class="leftAlign">Zip: <span id="zipInputDisplay"></span> {{ zipInput }}</span><br>
-      <span class="leftAlign">Radius: <span id="radiusInputDisplay">{{ radiusInput }}</span> miles</span>
-    </div>
-    <button class="btn btn-outline" @click="fetchData">Submit</button>
+    <button class="btn btn-outline" @click="handleGetData">Submit</button>
 
     <div class="result" id="results">
       <span class="leftAlign">Average Price: </span>
@@ -47,8 +39,8 @@ const zipInput = ref('')
 const searchInput = ref('')
 const radiusInput = ref('')
 
-function handleSetParams() {
-  setParameters({
+function handleGetData() {
+  fetchData({
     zipInput: zipInput.value,
     searchInput: searchInput.value,
     radiusInput: radiusInput.value

@@ -6,7 +6,6 @@
     
      <listing  v-else class="listingResults" />
 
-     
   </div>
   
 </template>
