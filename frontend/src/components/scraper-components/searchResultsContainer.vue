@@ -12,19 +12,16 @@
 
 <script setup>
 import Listing from './listingContainer.vue';
-import { isLoading } from '@/composables/fetchData';
+import { isLoading } from '@/composables/scraper-functions/fetchData';
 
 </script>
 
 <style scoped>
 .search-results-container{
+
   width: 1100px;
-  height: 80vh;
-  overflow-x: hidden;
+  height: 90vh;
   overflow-y: scroll;
-  display: flex;
-    justify-content: center;
-  align-items: center;
 }
 
 .loadingContainer{

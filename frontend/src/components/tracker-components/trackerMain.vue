@@ -7,7 +7,7 @@
 
 <script setup>
 import inputComponent from './inputComponent.vue';
-import navBar from '../navBar.vue';
+
 import dbFetch from './dbFetch.vue';
 </script>
 

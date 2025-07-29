@@ -31,9 +31,8 @@
 
 <script setup>
 import { ref } from 'vue'
-import { setParameters } from '@/composables/setParameters'
-import { fetchData } from '@/composables/fetchData'
-import { average } from '@/composables/fetchData'
+import { fetchData } from '@/composables/scraper-functions/fetchData'
+import { average } from '@/composables/scraper-functions/fetchData'
 
 const zipInput = ref('')
 const searchInput = ref('')

@@ -6,24 +6,24 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider = "sqlite"
+  url      = "file:./dev.db"
 }
 
 model vehicles {
   id      Int @id @default(autoincrement())
-  guid    String
   year    Int
   make    String
   model   String
+  mileage Int
+  price   Int
 }
 
 model items {
   id      Int @id @default(autoincrement())
-  guid    String
   name    String
+  price   Int
 }

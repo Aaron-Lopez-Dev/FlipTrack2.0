@@ -10,20 +10,20 @@
 </template>
 
 <script setup>
-import { listingDataPull } from '@/composables/fetchData';
+import { listingDataPull } from '@/composables/scraper-functions/fetchData';
 
 
 </script>
 
 <style>
 .listingContainer {
-  margin-top: 4250px;
+  margin: auto;
   width: 900px;
   height: fit-content;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
-  padding: 2rem; 
+  padding: 2rem;
   box-sizing: border-box;
 }
 

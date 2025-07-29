@@ -9,26 +9,56 @@
 
         <form class="vehicleInputForm" v-if="itemInputForm == 0">
             <h2>Vehicle Details</h2>
-            <input type="text" class="input" placeholder="Year">
-            <input type="text" class="input" placeholder="Make">
-            <input type="text" class="input" placeholder="Model">
-            <input type="text" class="input" placeholder="Mileage">
-            <input type="text" class="input" placeholder="Purchase Price">
-            <button class="submitButton btn btn-outline" type="submit">Submit</button>
+            <input type="text" class="input" placeholder="Year" v-model="inputYear">
+            <input type="text" class="input" placeholder="Make" v-model="inputMake">
+            <input type="text" class="input" placeholder="Model" v-model="inputModel">
+            <input type="text" class="input" placeholder="Mileage" v-model="inputMileage">
+            <input type="text" class="input" placeholder="Purchase Price" v-model="inputPrice">
+            <button class="submitButton btn btn-outline" @click.prevent="handleNewVehicle">Submit</button>
         </form>
 
         <form class="itemInputForm" v-else>
             <h2>Item Details</h2>
-            <input type="text" class="input" placeholder="Item Name">
-            <input type="text" class="input" placeholder="Purchase Price">
+            <input type="text" class="input" placeholder="Item Name" v-model="inputItemName">
+            <input type="text" class="input" placeholder="Purchase Price" v-model="inputItemPrice">
 
-            <button class="submitButton btn btn-outline" type="submit">Submit</button>
+            <button class="submitButton btn btn-outline" @click.prevent="handleNewItem">Submit</button>
         </form>
     </div>
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import { displayItemInputForm, itemInputForm, displayVehicleInputForm } from '@/composables/displayForms';
+import { addVehicle } from '@/composables/tracker-functions/addVehicle'
+import { addItem } from '@/composables/tracker-functions/addItem'
+
+const inputYear = ref('')
+const inputMake = ref('')
+const inputModel = ref('')
+const inputMileage = ref('')
+const inputPrice = ref('')
+
+const inputItemName = ref('')
+const inputItemPrice = ref('')
+
+async function handleNewVehicle(){
+    await addVehicle({
+        year: inputYear.value,
+        make: inputMake.value,
+        model: inputModel.value,
+        mileage: inputMileage.value,
+        price: inputPrice.value
+    })
+
+}
+
+async function handleNewItem(){
+    await addItem({
+        itemName : inputItemName.value,
+        itemPrice: inputItemPrice.value
+    })
+}
 
 </script>
 
